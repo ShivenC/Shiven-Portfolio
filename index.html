@@ -4,8 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shiven Chhugani — Cybersecurity</title>
-  <a href="/Resume.pdf" class="btn p" target="_blank" rel="noopener">View Resume</a>
-  <a href="#contact" class="btn s">Get in Touch</a>
 <meta name="description" content="Shiven Chhugani — Cybersecurity professional & SOC analyst. Threat detection, SIEM engineering, incident response.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,6 +48,11 @@
   .nlinks{display:flex;gap:4px}
   .nlinks a{text-decoration:none;color:var(--muted);font-size:14px;padding:8px 14px;border-radius:8px;transition:.2s}
   .nlinks a:hover,.nlinks a.active{color:var(--white);background:rgba(15,31,61,.06)}
+  .burger{display:none;background:none;border:0;cursor:pointer;padding:8px;flex-direction:column;gap:5px}
+  .burger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px;transition:.25s}
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
   /* hero */
   #home{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:80px}
@@ -158,12 +161,28 @@
   .rv.in{opacity:1;transform:none}
 
   @media(max-width:820px){
-    .stats,.certs{grid-template-columns:repeat(2,1fr)}
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .certs{grid-template-columns:repeat(2,1fr)}
     .grid2,.skills{grid-template-columns:1fr}
-    .nlinks{display:none}
-    nav .in{justify-content:center}
+    .burger{display:flex}
+    nav .in{flex-wrap:wrap}
+    .nlinks{display:none;width:100%;flex-direction:column;gap:2px;padding-top:12px;margin-top:12px;border-top:1px solid var(--line)}
+    .nlinks.open{display:flex}
+    .nlinks a{padding:13px 14px;font-size:16px;border-radius:10px}
     section{padding:72px 0}
-    .contact{padding:36px 24px}
+    .contact{padding:36px 22px}
+    .job,.proj,.edu{padding:22px}
+    .job .when,.edu .grad{text-align:left}
+  }
+  @media(max-width:440px){
+    .stats{grid-template-columns:1fr 1fr;gap:12px}
+    .stat{padding:18px 16px}
+    .stat .n{font-size:28px}
+    .certs{grid-template-columns:1fr 1fr;gap:10px}
+    h1{letter-spacing:-1px}
+    .btns{gap:10px}
+    .btn{flex:1;justify-content:center}
+    .wrap{padding:0 18px}
   }
 </style>
 </head>
@@ -175,7 +194,8 @@
 
 <nav><div class="in">
   <div class="logo"><span class="d"></span>Shiven Chhugani</div>
-  <div class="nlinks">
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="nlinks" id="nlinks">
     <a href="#home" class="active">Home</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
@@ -187,17 +207,17 @@
 <section id="home"><div class="wrap">
   <span class="badge rv"><span class="pl"></span>Open to full-time cybersecurity roles</span>
   <h1 class="rv">Shiven <span class="ac">Chhugani</span></h1>
-  <div class="role rv"><span class="pre"></span> <span id="typed"></span><span class="cur"></span></div>
- 
+  <div class="role rv"><span class="pre">$</span> <span id="typed"></span><span class="cur"></span></div>
+  <p class="intro rv">Cybersecurity graduate from the <b>University of South Florida</b>. I work in SOC alert triage, build SIEM detections, and investigate threats by mapping adversary behavior to MITRE ATT&CK — from home-lab packet captures to autonomous AI triage agents.</p>
   <div class="btns rv">
-    <a href="/Resume.pdf" class="btn p" target="_blank" rel="noopener">View Resume</a>
-    <a href="#contact" class="btn s">Get in Touch</a>
+    <a href="#projects" class="btn p">View Projects</a>
+    <a href="mailto:shivenchhugani@gmail.com" class="btn s">Get in Touch</a>
   </div>
   <div class="stats">
     <div class="stat rv"><div class="n" data-c="100"><span class="v">0</span><span class="u">+</span></div><div class="l">Weekly tickets triaged</div></div>
     <div class="stat rv"><div class="n" data-c="50000"><span class="v">0</span><span class="u">+</span></div><div class="l">Users supported</div></div>
     <div class="stat rv"><div class="n" data-c="35"><span class="v">0</span><span class="u">+</span></div><div class="l">Technicians led</div></div>
-    <div class="stat rv"><div class="n" data-c="520"><span class="v">0</span><span class="u">+</span></div><div class="l">Rooms Covered</div></div>
+    <div class="stat rv"><div class="n" data-c="520"><span class="v">0</span><span class="u">+</span></div><div class="l">Classrooms supported</div></div>
   </div>
 </div></section>
 
@@ -208,7 +228,7 @@
     <div class="job rv">
       <div class="top">
         <div><div class="role-t">IT Technician</div><div class="org">University of South Florida · Tampa, FL</div></div>
-        <div class="when">May 2025 — May 2026<br><span class="tag"></span></div>
+        <div class="when">May 2025 — May 2026<br><span class="tag">Full-time</span></div>
       </div>
       <ul>
         <li>Triaged <b>100+ weekly help desk tickets</b> in Jira, supporting <b>50,000+ staff and students</b> across 520+ classrooms.</li>
@@ -220,7 +240,7 @@
     <div class="job rv">
       <div class="top">
         <div><div class="role-t">Cybersecurity Apprenticeship</div><div class="org">ReliaQuest · Tampa, FL</div></div>
-        <div class="when">Feb 2026 — Mar 2026<br><span class="tag"></span></div>
+        <div class="when">Feb 2026 — Mar 2026<br><span class="tag">Apprenticeship</span></div>
       </div>
       <ul>
         <li>Conducted <b>SOC alert triage</b> and threat investigation on simulated incidents in the GreyMatter XDR platform.</li>
@@ -232,7 +252,7 @@
     <div class="job rv">
       <div class="top">
         <div><div class="role-t">Student Technician</div><div class="org">University of South Florida · Tampa, FL</div></div>
-        <div class="when">May 2024 — May 2025<br><span class="tag"></span></div>
+        <div class="when">May 2024 — May 2025<br><span class="tag">Part-time</span></div>
       </div>
       <ul>
         <li>Performed weekly assessments of <b>40+ classrooms</b>, checking network connectivity and endpoint functionality.</li>
@@ -307,7 +327,7 @@
   <div class="contact rv">
     <h2>Let's work together</h2>
     <p>I'm looking for SOC analyst, security engineering, and threat detection roles. Feel free to reach out — I'd love to chat.</p>
-    <div class="clinks"> 
+    <div class="clinks">
       <a class="mail" href="mailto:shivenchhugani@gmail.com">Email me</a>
       <a href="tel:+18138094204">+1 (813) 809-4204</a>
       <a href="https://linkedin.com/in/shiven-chhugani" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -336,7 +356,7 @@ function draw(){
 setInterval(draw,60);
 
 /* typewriter */
-const phrases=[''];
+const phrases=['SOC Analyst','Threat Hunter','SIEM Engineer','Incident Responder'];
 let pi=0,ci=0,del=false;const t=document.getElementById('typed');
 (function type(){
   const w=phrases[pi];
@@ -360,6 +380,11 @@ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.targ
 document.querySelectorAll('.rv').forEach((el,i)=>{el.style.transitionDelay=(i%4*70)+'ms';io.observe(el);});
 let counted=false;
 new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!counted){counted=true;counters();}}),{threshold:.4}).observe(document.querySelector('.stats'));
+
+/* mobile menu */
+const burger=document.getElementById('burger'),nlinks=document.getElementById('nlinks');
+burger.addEventListener('click',()=>{burger.classList.toggle('open');nlinks.classList.toggle('open');});
+nlinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('open');nlinks.classList.remove('open');}));
 
 /* nav active */
 const secs=[...document.querySelectorAll('section')],links=[...document.querySelectorAll('.nlinks a')];
